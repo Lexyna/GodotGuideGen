@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStaticBookGen", "SimpleStaticBookGen\SimpleStaticBookGen.csproj", "{7483D4A9-47D5-4461-B6D8-6FF3106E5826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStaticBookGen.Tests", "SimpleStaticBookGen.Tests\SimpleStaticBookGen.Tests.csproj", "{8797BC13-8847-4D11-87BD-E8DBA2AD6723}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7483D4A9-47D5-4461-B6D8-6FF3106E5826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7483D4A9-47D5-4461-B6D8-6FF3106E5826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7483D4A9-47D5-4461-B6D8-6FF3106E5826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7483D4A9-47D5-4461-B6D8-6FF3106E5826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8797BC13-8847-4D11-87BD-E8DBA2AD6723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8797BC13-8847-4D11-87BD-E8DBA2AD6723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8797BC13-8847-4D11-87BD-E8DBA2AD6723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8797BC13-8847-4D11-87BD-E8DBA2AD6723}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
