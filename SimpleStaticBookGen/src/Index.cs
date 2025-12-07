@@ -1,11 +1,33 @@
-/*
-    This class contains the the index structure of the book as parsed by the index.json file
-*/
 public class Index : IHTMLGenerator
 {
-    public Dictionary<string, Chapter> chapters = new();
+    public Dictionary<string, List<Chapter>> Chapters = new();
 
-    public List<string> layout = new();
+    public List<string> ChapterLayout = new();
+
+    public Index(IndexObj index)
+    {
+        if (index.Book == null)
+        {
+            Console.WriteLine("No Content found in index.json.");
+            return;
+        }
+
+        for (int i = 0; i < index.Book.GetLength(0); i++)
+        {
+            for (int j = 0; j < index.Book[i].Length; j++)
+            {
+                if (!Chapters.ContainsKey(index.Book[i][0]))
+                {
+                    Chapters.Add(index.Book[i][0], new List<Chapter>());
+                    ChapterLayout.Add(index.Book[i][0]);
+                }
+
+                Chapter ch = new Chapter(index.Book[i][j], "blablabla");
+                Chapters[index.Book[i][0]].Add(ch);
+
+            }
+        }
+    }
 
     public string GenerateSite()
     {
@@ -31,9 +53,9 @@ public class Index : IHTMLGenerator
 
         navBar += "<ul>\n";
 
-        for (int i = 0; i < layout.Count; i++)
+        for (int i = 0; i < ChapterLayout.Count; i++)
         {
-            navBar += $"<li><a href=\"#{layout[i]}\"><small>{Utils.ToRomanNumber(i + 1)}</small>{layout[i]}</a></li>\n";
+            navBar += $"<li><a href=\"#{ChapterLayout[i]}\"><small>{Utils.ToRomanNumber(i + 1)}</small>{ChapterLayout[i]}</a></li>\n";
         }
 
         navBar += "</ul>\n";

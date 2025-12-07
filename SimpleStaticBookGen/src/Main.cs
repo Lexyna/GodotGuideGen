@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 public class Entry
 {
 
@@ -5,17 +8,19 @@ public class Entry
     {
         Console.WriteLine("Static Book Gen, Hello!");
 
-        Index index = new Index();
+        string path = "";
 
-        int testChapter = 10;
+        //Read index file
+        string indexJson = File.ReadAllText(path + "/index.json");
+        IndexObj? indexObj = JsonSerializer.Deserialize<IndexObj>(indexJson);
 
-        for (int i = 1; i <= testChapter; i++)
+        if (indexObj == null)
         {
-            string title = $"Chapter {i}";
-            Chapter ch = new Chapter(title, "blablabla");
-            index.chapters.Add(title, ch);
-            index.layout.Add(title);
+            Console.WriteLine("Couldn't read index file.");
+            return;
         }
+
+        Index index = new Index(indexObj);
 
         if (!Directory.Exists("Site"))
             Directory.CreateDirectory("Site");
