@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public static class ScriptGenerator
 {
 
@@ -20,6 +22,18 @@ public static class ScriptGenerator
             scripts.Add(fileName, script);
         }
 
+    }
+
+    public static string CerateCodeSnippet(string id, int before, int after, string displayInfo)
+    {
+        foreach (KeyValuePair<string, ScriptObj> pair in scripts)
+        {
+            var script = pair.Value;
+            if (!script.blocks.ContainsKey(id))
+                continue;
+            return script.GenerateCodeSnippet(id, before, after, displayInfo);
+        }
+        return "";
     }
 
 }

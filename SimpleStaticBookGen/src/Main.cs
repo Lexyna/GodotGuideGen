@@ -23,7 +23,7 @@ public class Entry
             return;
         }
 
-        Index index = new Index(indexObj, path);
+        Index index = new Index(indexObj, path + "/Book");
 
         index.CreateHTML();
     }

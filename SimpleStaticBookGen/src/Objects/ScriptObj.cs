@@ -71,4 +71,98 @@ public class ScriptObj
         }
     }
 
+    public string GenerateCodeSnippet(string blockId, int before, int after, string displayText)
+    {
+        string snippet = "";
+
+        int start = blocks[blockId].Item2;
+        int blockLength = blocks[blockId].Item1.Count;
+
+        snippet += "<div class=\"snippet\">\n";
+
+        snippet += SnippetBefore(start, before);
+        snippet += SnippetMain(blockId, displayText);
+        snippet += SnippetAfter(start + blockLength, after);
+
+        snippet += "</div>\n";
+
+        snippet += "<div class=\"source-btm\">\n";
+        snippet += $"<em>{FileName}.gd</em>";
+        if (displayText != null)
+            snippet += displayText;
+        snippet += "</div>\n";
+
+        return snippet;
+    }
+
+    private string SnippetMain(string blockId, string displayText)
+    {
+        string snippet = "";
+
+        snippet += "<div class=\"source\">\n";
+        snippet += $"<em>{FileName}.gd</em><br>\n";
+
+        if (displayText != null)
+            snippet += displayText;
+
+        snippet += "</div>";
+
+        List<string> lines = blocks[blockId].Item1;
+
+        snippet += "<pre class=\"snippet-main\">\n";
+        snippet += "<code>\n";
+
+        for (int i = 0; i < lines.Count; i++)
+        {
+            snippet += lines[i] + "\n";
+        }
+
+        snippet += "</code>\n";
+        snippet += "</pre>\n";
+
+        return snippet;
+    }
+
+    private string SnippetBefore(int start, int before)
+    {
+        string snipperBefore = "";
+
+        int startLine = start - before;
+
+        if (startLine < 1 || startLine + before >= Lines.Count) return snipperBefore;
+
+        snipperBefore += "<pre class=\"snippet-before\">\n";
+        snipperBefore += "<code>\n";
+
+        for (int i = startLine; i < startLine + before - 1; i++)
+        {
+            snipperBefore += Lines[i] + "\n";
+        }
+
+        snipperBefore += "</code>\n";
+        snipperBefore += "</pre>\n";
+        return snipperBefore;
+    }
+
+    private string SnippetAfter(int start, int after)
+    {
+        string snippetAfter = "";
+
+        int startLine = start;
+
+        if (startLine < 1 || startLine + after >= Lines.Count) return snippetAfter;
+
+        snippetAfter += "<pre class=\"snippet-after\">\n";
+        snippetAfter += "<code>\n";
+
+        for (int i = startLine; i < startLine + after - 1; i++)
+        {
+            snippetAfter += Lines[i] + "\n";
+        }
+
+        snippetAfter += "</code>\n";
+        snippetAfter += "</pre>\n";
+        return snippetAfter;
+    }
+
 }
