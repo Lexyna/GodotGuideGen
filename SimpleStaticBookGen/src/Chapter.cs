@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using Markdig;
+using Markdig.Extensions.CustomContainers;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
@@ -40,14 +41,17 @@ public class Chapter : IHTMLGenerator
         var writer = new StringWriter();
         var renderer = new HtmlRenderer(writer);
 
+        pipeline.Setup(renderer);
+
         //renderer.ObjectRenderers.RemoveAll(r => r is QuoteBlockRenderer);
         //renderer.ObjectRenderers.Add(new SSBQuoteBlockRenderer());
         renderer.ObjectRenderers.RemoveAll(r => r is HeadingRenderer);
         renderer.ObjectRenderers.Add(new SSBHeadingRenderer());
 
-        renderer.WrapRenderer<CodeBlock, CodeBlockRenderer>("div", "snippet");
+        renderer.ObjectRenderers.RemoveAll(r => r is HtmlCustomContainerRenderer);
+        renderer.ObjectRenderers.Add(new SBBCustomContainerRenderer());
 
-        pipeline.Setup(renderer);
+        //renderer.WrapRenderer<CodeBlock, CodeBlockRenderer>("div", "snippet");
 
         document = Markdown.Parse(fileContent, pipeline);
         renderer.Render(document);

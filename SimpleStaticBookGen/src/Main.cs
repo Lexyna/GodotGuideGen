@@ -10,8 +10,11 @@ public class Entry
 
         string path = "";
 
+        //Load Scripts
+        ScriptGenerator.LoadScripts(path + "/Scripts");
+
         //Read index file
-        string indexJson = File.ReadAllText(path + "/index.json");
+        string indexJson = File.ReadAllText(path + "/Book/index.json");
         IndexObj? indexObj = JsonSerializer.Deserialize<IndexObj>(indexJson);
 
         if (indexObj == null)
