@@ -35,13 +35,17 @@ public class Chapter : IHTMLGenerator
 
     private void ParseContent(string fileContent)
     {
-        var pipeline = new MarkdownPipelineBuilder().Build();
+        var pipeline = new MarkdownPipelineBuilder().UsePipeTables().UseCustomContainers().Build();
 
         var writer = new StringWriter();
         var renderer = new HtmlRenderer(writer);
 
-        renderer.ObjectRenderers.RemoveAll(r => r is QuoteBlockRenderer);
-        renderer.ObjectRenderers.Add(new SSBQuoteBlockRenderer());
+        //renderer.ObjectRenderers.RemoveAll(r => r is QuoteBlockRenderer);
+        //renderer.ObjectRenderers.Add(new SSBQuoteBlockRenderer());
+        renderer.ObjectRenderers.RemoveAll(r => r is HeadingRenderer);
+        renderer.ObjectRenderers.Add(new SSBHeadingRenderer());
+
+        renderer.WrapRenderer<CodeBlock, CodeBlockRenderer>("div", "snippet");
 
         pipeline.Setup(renderer);
 
@@ -60,11 +64,14 @@ public class Chapter : IHTMLGenerator
         navBar += $"<h2><small>{Title}</small></h2>\n";
         navBar += "<ul>";
 
+        int index = 1;
+
         for (int i = 1; i < headings.Count; i++)
         {
             if (headings[i].Level >= 3) continue;
 
-            navBar += $"<li><a href=\"\"><small>{i}</small>{headings[i].Text}</a></li>";
+            navBar += $"<li><a href=\"\"><small>{index}</small>{headings[i].Text}</a></li>";
+            index++;
 
         }
 
@@ -91,8 +98,22 @@ public class Chapter : IHTMLGenerator
         string body = "<body>\n";
 
         body += GenerateNavBar();
+        body += "<div class=\"page\">\n";
 
+        body += "<article class=\"chapter\">\n";
 
+        body += Content;
+
+        body += "<footer>";
+
+        body += $"<a class=\"next\" href=\"\">Next Chapter: \"TODO\" &#8594;</a>";
+        body += "A guide by Lexyna &#8212;";
+        body += $"<a href=\"https://github.com/Lexyna/SimpleStaticBookGen\"> © 2025</a>";
+
+        body += "</footer>";
+
+        body += "</article>\n";
+        body += "</div>\n";
         body += "<body>\n";
         return body;
     }

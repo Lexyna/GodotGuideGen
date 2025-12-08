@@ -34,8 +34,15 @@ public static class Utils
         head += "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n";
         head += "<link href=\"https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap\" rel =\"stylesheet\">\n";
 
-        head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n";
         //head += "<link rel=\"icon\" type=\"image/png\" href=\"image/favicon.png\">\n";
+
+        head += "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css\">\n";
+        head += "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@catppuccin/highlightjs@1.0.1/css/catppuccin-macchiato.css\">\n";
+        head += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>\n";
+        head += "<script>hljs.highlightAll();</script>";
+        head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n";
+
+
 
         head += "</head>\n";
         return head;
