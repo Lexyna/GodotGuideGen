@@ -4,11 +4,16 @@
 const KEYWORDS = {
     keyword: "if elif else for while for match when break continue pass return class class_name extends is in as self super signal " +
         "func static const enum var breakpoint await yield assert void const and not or",
-    built_in: "new enum @",
+    built_in: "new enum",
     literal: "null false true PI TAU INF NAN",
     type: "bool int float String StringName Vector2 Vector2i Vector3 Vector3i  Rect2 Transform2D Plane Quaternion AABB Basis Transform3D " +
         "Color RID Object Array PackedByteArray PackedInt32Array PackedInt64Array PackedFloat32Array PackedFloat64Array PackedStringArray " +
         "PackedVectorArray PackedVector3Array PackedVecto4Array PackedColorArray Dictionary Signal Callable",
+};
+
+const AT = {
+    className: "title function",
+    begin: /@[a-zA-Z_][a-zA-Z0-9_]*/
 };
 
 const METHOD_CALL = {
@@ -29,7 +34,6 @@ const PARENTHESIS = {
     begin: /(\(|\)|\]|\[|\{|\})/,
     relevance: 0
 };
-
 
 const TYPE = {
     begin: /:\s?/,
@@ -115,6 +119,7 @@ function GDScript(hljs) {
         contains: [
             hljs.HASH_COMMENT_MODE,
             hljs.QUOTE_STRING_MODE,
+            AT,
             METHOD_CALL,
             PARENTHESIS,
             OPERATOR,
