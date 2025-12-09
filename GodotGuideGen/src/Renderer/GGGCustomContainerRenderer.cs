@@ -4,7 +4,7 @@ using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
 
-public class SBBCustomContainerRenderer : HtmlObjectRenderer<CustomContainer>
+public class GGGCustomContainerRenderer : HtmlObjectRenderer<CustomContainer>
 {
     //Matches the format: {id}:{num}:{num}:{text}
     private static string pattern = "([a-zA-Z-_]+):([0-9]+):([0-9]+):?([a-zA-Z\\s*.-_]*)$";

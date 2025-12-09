@@ -2,7 +2,7 @@ using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
 
-public class SSBHeadingRenderer : HtmlObjectRenderer<HeadingBlock>
+public class GGGHeadingRenderer : HtmlObjectRenderer<HeadingBlock>
 {
     private static readonly string[] HeadingTexts = [
       "h1",

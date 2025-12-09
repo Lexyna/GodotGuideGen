@@ -51,10 +51,10 @@ public class Chapter : IHTMLGenerator
         //renderer.ObjectRenderers.RemoveAll(r => r is QuoteBlockRenderer);
         //renderer.ObjectRenderers.Add(new SSBQuoteBlockRenderer());
         renderer.ObjectRenderers.RemoveAll(r => r is HeadingRenderer);
-        renderer.ObjectRenderers.Add(new SSBHeadingRenderer());
+        renderer.ObjectRenderers.Add(new GGGHeadingRenderer());
 
         renderer.ObjectRenderers.RemoveAll(r => r is HtmlCustomContainerRenderer);
-        renderer.ObjectRenderers.Add(new SBBCustomContainerRenderer());
+        renderer.ObjectRenderers.Add(new GGGCustomContainerRenderer());
 
         //renderer.WrapRenderer<CodeBlock, CodeBlockRenderer>("div", "snippet");
 

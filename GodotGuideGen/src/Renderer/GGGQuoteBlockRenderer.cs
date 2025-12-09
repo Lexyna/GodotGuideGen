@@ -2,7 +2,7 @@ using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
 
-public class SSBQuoteBlockRenderer : HtmlObjectRenderer<QuoteBlock>
+public class GGGQuoteBlockRenderer : HtmlObjectRenderer<QuoteBlock>
 {
     protected override void Write(HtmlRenderer renderer, QuoteBlock obj)
     {
