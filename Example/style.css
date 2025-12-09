@@ -1,0 +1,457 @@
+nav {
+  background-color: #24273a;
+  color: #f0c6c6;
+  font-family: "Bitcount Prop Single";
+  font-weight: 300;
+  font-size: 20px;
+}
+
+nav.toc {
+  position: fixed;
+  width: 20rem;
+  height: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 6px 0 3px 0;
+  padding: 6px 0 4px 0;
+  border-top: solid 1px #f5a97f;
+  border-bottom: solid 1px #f5a97f;
+}
+
+.snippet {
+  line-height: 0px;
+}
+
+.snippet-before code{
+  background-color: #363a4f;
+}
+
+.snippet-before > .hljs{
+  background-color: #red;
+  color: #cad3f5;
+}
+
+.snippet-before span{
+  color: #cad3f5;
+}
+
+pre.snippet-before code{
+  padding: 0 0 0 1rem;
+}
+
+pre.snippet-after code{
+  padding: 0 0 1rem 1rem;
+}
+
+pre.snippet-main code{
+  padding: 0 0 0 1rem;
+}
+
+.snippet-after code{
+  background-color: #363a4f;
+}
+
+.snippet-after > .hljs{
+  background-color: #red;
+  color: #cad3f5;
+}
+
+.snippet-after span{
+  color: #cad3f5;
+}
+
+.snippet-main {
+  border-right: 2px solid #f0c6c6;
+  border-left: 2px solid #f0c6c6;
+}
+
+.aside {
+  position: absolute;
+  right: -50%;
+  width: 288px;
+  border-top: solid 1px #939ab7;
+  font-size: 14px;
+  font: normal 14px/20px "Source Code Pro", monospace;
+}
+
+.aside img{
+  float: left;
+  width: max-content;
+  padding-right: 10px;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: "Source Code Pro";
+  font-size: 14px;
+}
+
+.source{
+  position: absolute;
+  right: -40%;
+  width: 220px;
+  padding: 0px -50px 0 20px;
+  font: normal 14px/20px "Source Code Pro", monospace;
+}
+
+.source-btm{
+  display: none;
+  text-align: right;
+  font: normal 14px/20px "Source Code Pro", monospace;
+}
+
+code {
+  background:#f4dbd6;
+  color: #24273a;
+  font: normal 16px/22px "Courier New", Monospace;
+  padding: 2px;
+  box-shadow: 2px 2px #f5bde6;
+}
+
+.hljs {
+    box-shadow: 0px 0px;
+}
+
+.source em {
+  color: #312629;
+}
+
+.source-btm em{
+    color: #312629;
+}
+
+.source::before {
+  content: "<<";
+  text-align: left;
+  width: 30px;
+  right: 100%;
+  position: absolute;
+}
+
+table {
+  font-family: "Courier New";
+  font-size: 24px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  color: #8087a2;
+}
+
+tr {
+  color: #6e738d;
+}
+
+table thead tr th {
+  padding: 2px 30px 4px 2px;
+}
+
+td {
+  padding: 2px 0px 2px 2px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
+
+table, th, td {
+  border-bottom: 1px solid #8a8969;
+}
+
+a {
+  text-decoration: none;
+}
+
+article h2 a {
+  color: #494d64;
+}
+
+article h2 a:hover {
+  color: #f4dbd6;
+}
+
+
+article a {
+  color: #f4dbd6;
+}
+
+article a:hover {
+  color: #24273a;
+}
+
+nav a {
+  color: #f0c6c6;
+}
+
+nav a:hover {
+  color: #c6a0f6;
+}
+
+nav li small {
+  float: right;
+}
+
+nav.toc h2 {
+  font-weight: 500;
+  margin: 0;
+}
+
+nav.toc .contents {
+  margin: 15% 20%;
+}
+
+nav .prev-next {
+  padding-top: 2%;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2%;
+}
+
+.prev {
+  float: left;
+}
+
+.next {
+  float: right;
+}
+
+body {
+  background-color: #b7bdf8;
+  /*! margin: 0; */
+}
+
+.page {
+  position: relative;
+  width: max-content;
+  margin: 0 auto 0 384px;
+  font-family: "Verdana";
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 24px;
+  color: #8087a2;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.num {
+  display: inline-block;
+  width: 3rem;
+}
+
+.romanNum {
+  position: relative;
+  display: inline-block;
+  right: 2rem;
+  width: 2rem;
+  margin-right: 0rem;
+  font-size: 24px;
+  font-family: Georgia;
+}
+
+article {
+  position: relative;
+  width: max;
+}
+
+article img{
+  max-width: 100%;
+}
+
+article.chapter{
+  width: 40rem;
+}
+
+article.chapter p{
+  color: #24273a;
+  font-weight: 500;
+}
+
+article h1.title {
+  font-family: "Bitcount Prop Single";
+  color: #f4dbd6;
+  text-transform: uppercase;
+  padding: 5rem 0 2rem 0;
+  font-weight: 400;
+  font-size: 66px;
+  line-height: 100%;
+}
+
+article.content .chapters {
+  display: table;
+  width: 60rem;
+  font: normal 14px/20px "Source Code Pro", monospace;
+}
+
+article.content .row {
+  display: table-row;
+}
+
+article.content .left {
+  display: table-cell;
+  vertical-align: top;
+}
+
+article.content .right {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 2rem;
+}
+
+article.content h2 {
+  text-transform: uppercase;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+article.content h2:hover {
+  color: #f4dbd6;
+}
+
+article.content ul {
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
+
+article.content li {
+  list-style-type: none;
+  color: #312629;
+  font-weight: 300;
+  font-size: 24px;
+  padding: 0.5rem 0 0 24px;
+  line-height: 26px;
+}
+
+article.content li a {
+  color: #494d64;
+}
+
+article.content li a:hover {
+  color: #f4dbd6;
+}
+
+article.content li:hover {
+  color: #f4dbd6;
+}
+
+footer {
+  position: relative;
+  border-top: solid 1px #939ab7;
+  text-align: center;
+  margin: 3rem 0 0 1rem;
+  padding-top: 1rem;
+  font: 300 20px/30px "Bitcount Prop Single";
+  #cursor: pointer;
+}
+
+footer .next {
+  position: absolute;
+  right: 0px;
+  top: -15px;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #b7bdf8;
+}
+
+footer a {
+  border: none;
+  text-decoration: none;
+}
+
+
+article.content footer {
+  width: 95%;
+}
+
+article.chapter .hint p {
+  background-color: #24273a;
+  color: #f4dbd6;
+  padding: 2px 20px 2px 20px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+@media only screen and (max-width: 1370px) {
+  body {
+    margin: 0 24px;
+  }
+
+  nav.toc {
+    display: none;
+  }
+
+  .page {
+    position: relative;
+    width: inherit;
+    max-width: 912px;
+    margin: 0 auto;
+  }
+
+  article {
+    width: inherit;
+    margin: 0;
+  }
+
+  article.content .chapters,
+  article.content .row,
+  article.content .left,
+  article.content .right {
+    display: block;
+    width: auto;
+    padding: 0;
+    margin-right: 1rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  article {
+    width: inherit;
+  }
+  
+  article.chapter{
+    width: inherit;
+  }
+  
+  .aside{
+    position: inherit;
+    right: inherit;
+    width: inherit;
+    border-bottom: solid 1px #b4c788;
+    overflow: hidden;
+    padding-bottom: 10px;
+  }
+  .aside img{
+    display: block;
+    float: left;
+  }
+  
+  .source{
+    display: none;
+  }
+  .source-btm{
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .page {
+    margin: 0;
+  }
+
+  article.content ul {
+    margin: auto -2rem;
+  }
+
+  .num {
+    width: auto;
+  }
+}
