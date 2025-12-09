@@ -22,13 +22,15 @@ public class GGGHeadingRenderer : HtmlObjectRenderer<HeadingBlock>
 
         if (renderer.EnableHtmlForBlock)
         {
+            string id = obj.Inline.FirstChild.ToString().Replace(" ", "-");
+
             renderer.Write('<');
             renderer.Write(headingText);
             renderer.WriteAttributes(obj);
             if (headingText == "h1")
-                renderer.Write(" class=\"title\">");
+                renderer.Write($" id=\"{id}\" class=\"title\">");
             else
-                renderer.Write('>');
+                renderer.Write($" id=\"{id}\" >");
         }
 
         renderer.WriteLeafInline(obj);

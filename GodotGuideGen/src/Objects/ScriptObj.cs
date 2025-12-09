@@ -83,10 +83,11 @@ public class ScriptObj
         int blockLength = blocks[blockId].Item1.Count;
 
         snippet += "<div class=\"snippet\">\n";
-
-        snippet += SnippetBefore(start, before);
+        if (before > 0)
+            snippet += SnippetBefore(start, before);
         snippet += SnippetMain(blockId, displayText);
-        snippet += SnippetAfter(start + blockLength, after);
+        if (after > 0)
+            snippet += SnippetAfter(start + blockLength, after);
 
         snippet += "</div>\n";
 

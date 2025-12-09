@@ -39,7 +39,7 @@ Using the format
 :::
 ```
 
-where `Markdown` is normal markdown syntax, generates a right-floating container at the top of the previous element. 
+where `Markdown` is normal markdown syntax, generates a right-floating container at the top of the next element. 
 
 ## `hint`
 

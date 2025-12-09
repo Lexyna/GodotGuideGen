@@ -29,8 +29,6 @@ public class Chapter : IHTMLGenerator
 
         string fullPath = Path.Combine(path, "Book", $"{this.Title}.md");
 
-        //if (!Directory.Exists(path)) return;
-
         if (!File.Exists(fullPath)) return;
 
         string content = File.ReadAllText(fullPath);
@@ -48,15 +46,11 @@ public class Chapter : IHTMLGenerator
 
         pipeline.Setup(renderer);
 
-        //renderer.ObjectRenderers.RemoveAll(r => r is QuoteBlockRenderer);
-        //renderer.ObjectRenderers.Add(new SSBQuoteBlockRenderer());
         renderer.ObjectRenderers.RemoveAll(r => r is HeadingRenderer);
         renderer.ObjectRenderers.Add(new GGGHeadingRenderer());
 
         renderer.ObjectRenderers.RemoveAll(r => r is HtmlCustomContainerRenderer);
         renderer.ObjectRenderers.Add(new GGGCustomContainerRenderer());
-
-        //renderer.WrapRenderer<CodeBlock, CodeBlockRenderer>("div", "snippet");
 
         document = Markdown.Parse(fileContent, pipeline);
         renderer.Render(document);
@@ -79,7 +73,9 @@ public class Chapter : IHTMLGenerator
         {
             if (headings[i].Level >= 3) continue;
 
-            navBar += $"<li><a href=\"\"><small>{index}</small>{headings[i].Text}</a></li>";
+            string titleId = headings[i].Text.Replace(" ", "-");
+
+            navBar += $"<li><a href=\"#{titleId}\"><small>{index}</small>{headings[i].Text}</a></li>";
             index++;
 
         }
