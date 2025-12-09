@@ -12,6 +12,7 @@ using Markdig.Syntax;
 
 public class Chapter : IHTMLGenerator
 {
+    public string FileName { get; private set; }
     public string Title { get; private set; }
 
     private string Content { get; set; }
@@ -22,12 +23,15 @@ public class Chapter : IHTMLGenerator
 
     private bool initialized = false;
 
-    public Chapter(string Title, string path)
+    private string prev, next;
+    private string prevLink, nextLink;
+
+    public Chapter(string FileName, string path)
     {
-        this.Title = Title;
+        this.FileName = FileName;
         this.path = path;
 
-        string fullPath = Path.Combine(path, "Book", $"{this.Title}.md");
+        string fullPath = Path.Combine(path, "Book", $"{this.FileName}.md");
 
         if (!File.Exists(fullPath)) return;
 
@@ -35,6 +39,19 @@ public class Chapter : IHTMLGenerator
 
         ParseContent(content);
         initialized = true;
+    }
+
+    public string GetPath()
+    {
+        return FileName;
+    }
+
+    public void LinkChapters(string prev, string prevLink, string next, string nextLink)
+    {
+        this.prev = prev;
+        this.prevLink = prevLink;
+        this.next = next;
+        this.nextLink = nextLink;
     }
 
     private void ParseContent(string fileContent)
@@ -54,6 +71,10 @@ public class Chapter : IHTMLGenerator
 
         document = Markdown.Parse(fileContent, pipeline);
         renderer.Render(document);
+
+        var headings = document.Descendants<HeadingBlock>().Select(h => (h.Level, Text: h.Inline?.FirstChild?.ToString() ?? "")).ToList();
+
+        this.Title = headings[0].Text;
 
         Content = writer.ToString();
     }
@@ -85,8 +106,8 @@ public class Chapter : IHTMLGenerator
 
         navBar += "<div class =\"prev-next\">\n";
 
-        string prevTitle = "";
-        string nextTitle = "";
+        string prevTitle = prevLink;
+        string nextTitle = nextLink;
 
         navBar += $"<a class=\"prev\" href=\"{prevTitle}.html\">&#8592; Prev</a>\n";
         navBar += $"<a class=\"next\" href=\"{nextTitle}.html\">Next &#8594;</a>\n";
@@ -111,7 +132,7 @@ public class Chapter : IHTMLGenerator
 
         body += "<footer>";
 
-        body += $"<a class=\"next\" href=\"\">Next Chapter: \"TODO\" &#8594;</a>";
+        body += $"<a class=\"next\" href=\"{nextLink}.html\">Next Chapter: \"{next}\" &#8594;</a>";
         body += "A guide by Lexyna &#8212;";
         body += $"<a href=\"https://github.com/Lexyna/SimpleStaticBookGen\"> © 2025</a>";
 
@@ -140,7 +161,7 @@ public class Chapter : IHTMLGenerator
     {
         if (!initialized)
             return;
-        Utils.CreateHTMLFile(path, Title, GenerateSite());
+        Utils.CreateHTMLFile(path, FileName, GenerateSite());
 
     }
 }

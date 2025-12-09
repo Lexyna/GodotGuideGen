@@ -1,3 +1,4 @@
+using System.Data;
 using System.Text.RegularExpressions;
 
 public class Index : IHTMLGenerator
@@ -61,10 +62,9 @@ public class Index : IHTMLGenerator
 
         navBar += "<div class =\"prev-next\">\n";
 
-        string prevTitle = "";
-        string nextTitle = "";
+        string nextTitle = $"{ChapterLayout[0]}";
 
-        navBar += $"<a class=\"prev\" href=\"{prevTitle}.html\">&#8592; Prev</a>\n";
+        navBar += $"<a class=\"prev\" href=\"\">&#8592; Prev</a>\n";
         navBar += $"<a class=\"next\" href=\"{nextTitle}.html\">Next &#8594;</a>\n";
 
         navBar += "</div>\n";
@@ -95,7 +95,9 @@ public class Index : IHTMLGenerator
         {
             Chapter titleChapter = left[i][0];
 
-            body += $"<h2><span class=\"romanNum\">{Utils.ToRomanNumber(i + 1)}.</span><a href=\"{titleChapter.Title}.html\" name=\"{titleChapter.Title.ToLower()}\">{titleChapter.Title}</a></h2>\n";
+            string title = titleChapter.Title != null ? titleChapter.Title : titleChapter.FileName;
+
+            body += $"<h2><span class=\"romanNum\">{Utils.ToRomanNumber(i + 1)}</span><a href=\"{titleChapter.FileName}.html\" id=\"#{title.ToLower()}\">{title}</a></h2>\n";
             body += "<ul>\n";
             for (int j = 1; j < left[i].Count; j++)
             {
@@ -112,8 +114,9 @@ public class Index : IHTMLGenerator
         for (int i = 0; i < right.Count; i++)
         {
             Chapter titleChapter = right[i][0];
+            string title = titleChapter.Title != null ? titleChapter.Title : titleChapter.FileName;
 
-            body += $"<h2><span class=\"romanNum\">{Utils.ToRomanNumber(left.Count + i + 1)}.</span><a href=\"{titleChapter.Title}.html\" name=\"{titleChapter.Title.ToLower()}\">{titleChapter.Title}</a></h2>\n";
+            body += $"<h2><span class=\"romanNum\">{Utils.ToRomanNumber(left.Count + i + 1)}</span><a href=\"{title}.html\" name=\"{title.ToLower()}\">{title}</a></h2>\n";
             body += "<ul>\n";
             for (int j = 1; j < right[i].Count; j++)
             {
@@ -146,10 +149,43 @@ public class Index : IHTMLGenerator
     {
         string content = "<li>\n";
 
-        content += $"<span class=\"num\">{index}.</span><a href=\"{chapter.Title}.html\">{chapter.Title}</a>";
+        string title = chapter.Title != null ? chapter.Title : chapter.FileName;
+
+        content += $"<span class=\"num\">{index}.</span><a href=\"{chapter.FileName}.html\">{title}</a>";
 
         content += "</li>";
         return content;
+    }
+
+    private void LinkChapters()
+    {
+        for (int i = 0; i < Chapters.Count; i++)
+        {
+            string nextTitle = "";
+            string nextPath = "";
+            string prevTitle = "";
+            string prevPath = "";
+
+            if (i < Chapters.Count - 1)
+            {
+                nextTitle = Chapters[i + 1].Title;
+                nextPath = Chapters[i + 1].GetPath();
+            }
+
+            if (i == 0)
+            {
+                prevTitle = "Index";
+                prevPath = "index";
+            }
+
+            if (i >= 1)
+            {
+                prevTitle = Chapters[i - 1].Title;
+                prevPath = Chapters[i - 1].GetPath();
+            }
+
+            Chapters[i].LinkChapters(prevTitle, prevPath, nextTitle, nextPath);
+        }
     }
 
     private (List<List<Chapter>> left, List<List<Chapter>> right) SplitChapters(string[][] book)
@@ -220,6 +256,8 @@ public class Index : IHTMLGenerator
     public void CreateHTML()
     {
         Utils.CreateHTMLFile(path, "index", GenerateSite());
+        LinkChapters();
+
         foreach (Chapter ch in Chapters)
             ch.CreateHTML();
     }
