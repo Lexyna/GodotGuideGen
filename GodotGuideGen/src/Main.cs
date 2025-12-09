@@ -6,9 +6,19 @@ public class Entry
 
     public static void Main(String[] args)
     {
-        Console.WriteLine("Static Book Gen, Hello!");
+        if (args.Length < 1 || args.Length > 1)
+        {
+            Console.WriteLine($"Expected exactly 1 argument 'path', but received {args.Length}.");
+            return;
+        }
 
-        string path = "";
+        string path = args[0];
+
+        if (!Directory.Exists(path))
+        {
+            Console.WriteLine($"The path '{path}' could not be resolved.");
+            return;
+        }
 
         //Load Scripts
         ScriptGenerator.LoadScripts(path);
@@ -26,6 +36,7 @@ public class Entry
         Index index = new Index(indexObj, path);
 
         index.CreateHTML();
+        Console.WriteLine("Godot Guide Generated!");
     }
 
 }

@@ -258,6 +258,8 @@ public class Index : IHTMLGenerator
         Utils.CreateHTMLFile(path, "index", GenerateSite());
         LinkChapters();
 
+        Console.WriteLine("Created index.html");
+
         foreach (Chapter ch in Chapters)
             ch.CreateHTML();
     }

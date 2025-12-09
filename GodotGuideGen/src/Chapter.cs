@@ -96,7 +96,7 @@ public class Chapter : IHTMLGenerator
 
             string titleId = headings[i].Text.Replace(" ", "-");
 
-            navBar += $"<li><a href=\"#{titleId}\"><small>{index}</small>{headings[i].Text}</a></li>";
+            navBar += $"<li><a href=\"#{titleId}\"><small>.{Utils.ToRomanNumber(index)}</small>{headings[i].Text}</a></li>";
             index++;
 
         }
@@ -162,6 +162,7 @@ public class Chapter : IHTMLGenerator
         if (!initialized)
             return;
         Utils.CreateHTMLFile(path, FileName, GenerateSite());
+        Console.WriteLine($"Created {FileName}.html");
 
     }
 }
