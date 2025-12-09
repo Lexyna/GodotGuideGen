@@ -91,7 +91,7 @@ public class ScriptObj
         snippet += "</div>\n";
 
         snippet += "<div class=\"source-btm\">\n";
-        snippet += $"<em>{FileName}.gd</em>";
+        snippet += $"<em>{RelativePath}</em>";
         if (displayText != null)
             snippet += " " + displayText;
         snippet += "</div>\n";
@@ -104,7 +104,7 @@ public class ScriptObj
         string snippet = "";
 
         snippet += "<div class=\"source\">\n";
-        snippet += $"<em>{FileName}.gd</em><br>\n";
+        snippet += $"<em>{RelativePath}</em><br>\n";
 
         if (displayText != null)
             snippet += displayText;
