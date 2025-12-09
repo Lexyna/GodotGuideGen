@@ -11,7 +11,7 @@ public class Entry
         string path = "";
 
         //Load Scripts
-        ScriptGenerator.LoadScripts(path + "/Scripts");
+        ScriptGenerator.LoadScripts(path);
 
         //Read index file
         string indexJson = File.ReadAllText(path + "/Book/index.json");
@@ -23,7 +23,7 @@ public class Entry
             return;
         }
 
-        Index index = new Index(indexObj, path + "/Book");
+        Index index = new Index(indexObj, path);
 
         index.CreateHTML();
     }

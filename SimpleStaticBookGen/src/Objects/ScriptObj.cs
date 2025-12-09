@@ -11,20 +11,24 @@ public class ScriptObj
 
     public string FileName { get; private set; }
 
+    private string RelativePath;
+
     private HashSet<string> currentBlocks = new();
 
-    public ScriptObj(string path, string fileName)
+    public ScriptObj(string path, string relativePath, string fileName)
     {
         this.FileName = fileName;
+        this.RelativePath = relativePath;
         LoadScript(path);
     }
 
     private void LoadScript(string path)
     {
-        if (!Directory.Exists(path)) return;
-        if (!File.Exists(path + $"/{FileName}.gd")) return;
+        string fullPath = Path.Combine(path, RelativePath);
 
-        var pre_lines = File.ReadAllLines(path + $"/{FileName}.gd").ToList();
+        if (!File.Exists(fullPath)) return;
+
+        var pre_lines = File.ReadAllLines(fullPath).ToList();
 
         int lineIdx = 1;
 
@@ -89,7 +93,7 @@ public class ScriptObj
         snippet += "<div class=\"source-btm\">\n";
         snippet += $"<em>{FileName}.gd</em>";
         if (displayText != null)
-            snippet += displayText;
+            snippet += " " + displayText;
         snippet += "</div>\n";
 
         return snippet;

@@ -14,10 +14,11 @@ public static class ScriptGenerator
         foreach (var file in files)
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
+            string filePath = Path.GetRelativePath(path, file);
 
             if (scripts.ContainsKey(fileName)) continue;
 
-            ScriptObj script = new ScriptObj(path, fileName);
+            ScriptObj script = new ScriptObj(path, filePath, fileName);
 
             scripts.Add(fileName, script);
         }

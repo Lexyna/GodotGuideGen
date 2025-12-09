@@ -18,17 +18,22 @@ public class Chapter : IHTMLGenerator
 
     private MarkdownDocument document;
 
+    private string path = "";
+
     private bool initialized = false;
 
     public Chapter(string Title, string path)
     {
         this.Title = Title;
+        this.path = path;
 
-        if (!Directory.Exists(path)) return;
+        string fullPath = Path.Combine(path, "Book", $"{this.Title}.md");
 
-        if (!File.Exists(path + $"/{this.Title}.md")) return;
+        //if (!Directory.Exists(path)) return;
 
-        string content = File.ReadAllText(path + $"/{this.Title}.md");
+        if (!File.Exists(fullPath)) return;
+
+        string content = File.ReadAllText(fullPath);
 
         ParseContent(content);
         initialized = true;
@@ -139,7 +144,7 @@ public class Chapter : IHTMLGenerator
     {
         if (!initialized)
             return;
-        Utils.CreateHTMLFile("", Title, GenerateSite());
+        Utils.CreateHTMLFile(path, Title, GenerateSite());
 
     }
 }

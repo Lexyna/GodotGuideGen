@@ -4,6 +4,8 @@ using System.Text;
 public static class Utils
 {
 
+    private static string SITE = "Site";
+
     public static string ToRomanNumber(int number)
     {
         StringBuilder result = new StringBuilder();
@@ -50,10 +52,10 @@ public static class Utils
 
     public static void CreateHTMLFile(string path, string name, string html)
     {
-        if (!Directory.Exists("site"))
-            Directory.CreateDirectory("site");
+        if (!Directory.Exists(path + $"/{SITE}"))
+            Directory.CreateDirectory(path + $"/{SITE}");
 
-        File.WriteAllText($"site/{name}.html", html);
+        File.WriteAllText(path + $"/{SITE}/{name}.html", html);
 
     }
 
