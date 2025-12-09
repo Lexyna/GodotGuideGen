@@ -4,7 +4,7 @@
 const KEYWORDS = {
     keyword: "if elif else for while for match when break continue pass return class class_name extends is in as self super signal " +
         "func static const enum var breakpoint await yield assert void const and not or",
-    built_in: "new enum",
+    built_in: "new enum @",
     literal: "null false true PI TAU INF NAN",
     type: "bool int float String StringName Vector2 Vector2i Vector3 Vector3i  Rect2 Transform2D Plane Quaternion AABB Basis Transform3D " +
         "Color RID Object Array PackedByteArray PackedInt32Array PackedInt64Array PackedFloat32Array PackedFloat64Array PackedStringArray " +
@@ -21,7 +21,7 @@ const METHOD_CALL = {
 
 const OPERATOR = {
     className: "operator",
-    begin: /(=|\+|\-|\~|\/|\>|\<|\%|\!)/
+    begin: /(=|\+|\-|\~|\*|\/|\>|\<|\%|\!)/
 };
 
 const PARENTHESIS = {
@@ -43,18 +43,48 @@ const TYPE = {
 };
 
 const ENUM = {
+    className: 'enum',
+    beginKeywords: 'enum',
+    end: /\}/,
+    excludeBegin: true,
+    contains: [
+        {
+            className: 'type',
+            begin: /[a-zA-Z_][a-zA-Z0-9_]*/,
+            end: /(?=\{)/,
+            excludeEnd: true,
+            relevance: 0
+        },
+        {
+            begin: /\{/,
+            end: /\}/,
+            endsParent: true,
+            contains: [
+                {
+                    className: 'keyword',
+                    begin: /[A-Z][A-Z0-9_]*/,
+                    relevance: 0
+                }
+            ]
+        }
+    ]
+};
+
+const ENUM_ACCESS = {
     begin: /\./,
+    excludeBegin: true,
     contains: [
         {
             className: "keyword",
-            begin: /[A-Z0-9_]+/
+            begin: /\b[A-Z][A-Z_]+/,
+            relevance: 0
         }
     ]
 };
 
 const LITERAL = {
     className: "literal",
-    begin: /[0-9]+/
+    begin: /\b-?[0-9]+/
 };
 
 const CLASS = {
@@ -73,6 +103,12 @@ const CLASS_WILD = {
     begin: /[A-Z][a-zA-Z0-9_]+/,
 };
 
+const CONSTANT = {
+    className: 'constant',
+    begin: /\b[A-Z][A-Z0-9_]*\b/,
+    relevance: 0
+};
+
 function GDScript(hljs) {
     return {
         keywords: KEYWORDS,
@@ -83,10 +119,12 @@ function GDScript(hljs) {
             PARENTHESIS,
             OPERATOR,
             LITERAL,
-            TYPE,
             ENUM,
+            ENUM_ACCESS,
+            TYPE,
             CLASS,
-            CLASS_WILD
+            CONSTANT,
+            CLASS_WILD,
         ]
     };
 }
