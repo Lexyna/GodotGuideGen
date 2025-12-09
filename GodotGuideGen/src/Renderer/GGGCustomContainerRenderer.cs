@@ -41,7 +41,9 @@ public class GGGCustomContainerRenderer : HtmlObjectRenderer<CustomContainer>
 
         var child = obj.LastChild as ParagraphBlock;
 
-        var content = child.Inline.FirstChild.ToString();
+        var content = child?.Inline?.FirstChild?.ToString();
+
+        if (content == null) return "";
 
         Match correctSignature = Regex.Match(content, pattern);
 

@@ -22,7 +22,10 @@ public class GGGHeadingRenderer : HtmlObjectRenderer<HeadingBlock>
 
         if (renderer.EnableHtmlForBlock)
         {
-            string id = obj.Inline.FirstChild.ToString().Replace(" ", "-");
+            string? id = obj?.Inline?.FirstChild?.ToString()?.Replace(" ", "-");
+
+            if (id == null) id = "";
+            if (obj == null) return;
 
             renderer.Write('<');
             renderer.Write(headingText);

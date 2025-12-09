@@ -7,7 +7,7 @@ public class Index : IHTMLGenerator
 
     public List<string> ChapterLayout = new();
 
-    private IndexObj indexObj;
+    private IndexObj? indexObj;
 
     private string path;
 
@@ -77,6 +77,9 @@ public class Index : IHTMLGenerator
 
     public string GenerateBody()
     {
+        if (indexObj == null) return "";
+        if (indexObj.Book == null) return "";
+
         string body = "<body>\n";
 
         body += GenerateNavBar();
@@ -161,9 +164,9 @@ public class Index : IHTMLGenerator
     {
         for (int i = 0; i < Chapters.Count; i++)
         {
-            string nextTitle = "";
+            string? nextTitle = "";
             string nextPath = "";
-            string prevTitle = "";
+            string? prevTitle = "";
             string prevPath = "";
 
             if (i < Chapters.Count - 1)
@@ -183,6 +186,9 @@ public class Index : IHTMLGenerator
                 prevTitle = Chapters[i - 1].Title;
                 prevPath = Chapters[i - 1].GetPath();
             }
+
+            if (prevTitle == null) prevTitle = "";
+            if (nextTitle == null) nextTitle = "";
 
             Chapters[i].LinkChapters(prevTitle, prevPath, nextTitle, nextPath);
         }

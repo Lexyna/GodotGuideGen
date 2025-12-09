@@ -13,18 +13,18 @@ using Markdig.Syntax;
 public class Chapter : IHTMLGenerator
 {
     public string FileName { get; private set; }
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
-    private string Content { get; set; }
+    private string? Content { get; set; }
 
-    private MarkdownDocument document;
+    private MarkdownDocument? document;
 
     private string path = "";
 
     private bool initialized = false;
 
-    private string prev, next;
-    private string prevLink, nextLink;
+    private string? prev, next;
+    private string? prevLink, nextLink;
 
     public Chapter(string FileName, string path)
     {
@@ -37,7 +37,7 @@ public class Chapter : IHTMLGenerator
 
         string content = File.ReadAllText(fullPath);
 
-        ParseContent(content);
+        Content = ParseContent(content);
         initialized = true;
     }
 
@@ -54,7 +54,7 @@ public class Chapter : IHTMLGenerator
         this.nextLink = nextLink;
     }
 
-    private void ParseContent(string fileContent)
+    private string ParseContent(string fileContent)
     {
         var pipeline = new MarkdownPipelineBuilder().UsePipeTables().UseCustomContainers().Build();
 
@@ -76,12 +76,12 @@ public class Chapter : IHTMLGenerator
 
         this.Title = headings[0].Text;
 
-        Content = writer.ToString();
+        return writer.ToString();
     }
 
     public string GenerateNavBar()
     {
-        var headings = document.Descendants<HeadingBlock>().Select(h => (h.Level, Text: h.Inline?.FirstChild?.ToString() ?? "")).ToList();
+        var headings = document?.Descendants<HeadingBlock>().Select(h => (h.Level, Text: h.Inline?.FirstChild?.ToString() ?? "")).ToList();
 
         string navBar = "<nav class=\"toc\">\n";
         navBar += "<div class=\"contents\">\n";
@@ -90,7 +90,7 @@ public class Chapter : IHTMLGenerator
 
         int index = 1;
 
-        for (int i = 1; i < headings.Count; i++)
+        for (int i = 1; i < headings?.Count; i++)
         {
             if (headings[i].Level >= 3) continue;
 
@@ -106,8 +106,8 @@ public class Chapter : IHTMLGenerator
 
         navBar += "<div class =\"prev-next\">\n";
 
-        string prevTitle = prevLink;
-        string nextTitle = nextLink;
+        string prevTitle = prevLink != null ? prevLink : "";
+        string nextTitle = nextLink != null ? nextLink : "";
 
         navBar += $"<a class=\"prev\" href=\"{prevTitle}.html\">&#8592; Prev</a>\n";
         navBar += $"<a class=\"next\" href=\"{nextTitle}.html\">Next &#8594;</a>\n";
@@ -149,7 +149,9 @@ public class Chapter : IHTMLGenerator
         string site = "<!DOCTYPE html>\n";
         site += "<html>";
 
-        site += Utils.GenerateHead(Title);
+        string title = Title != null ? Title : FileName;
+
+        site += Utils.GenerateHead(title);
 
         site += GenerateBody();
 

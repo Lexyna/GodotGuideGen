@@ -8,9 +8,9 @@ public class WrapRenderer<TBlock, TOriginal> : HtmlObjectRenderer<TBlock>
 {
     private TOriginal Original;
     private string WrapperTag;
-    private string WrapperClass;
+    private string? WrapperClass;
 
-    public WrapRenderer(TOriginal original, string tag = "div", string wrapperClass = null)
+    public WrapRenderer(TOriginal original, string tag = "div", string? wrapperClass = null)
     {
         this.Original = original;
         WrapperClass = wrapperClass;

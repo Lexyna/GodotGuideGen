@@ -9,7 +9,7 @@ public static class WrapRendererExtension
     public static void WrapRenderer<TBlock, TOriginal>(
         this HtmlRenderer renderer,
         string tag = "div",
-        string wrapperClass = null
+        string? wrapperClass = null
     )
     where TBlock : Block
     where TOriginal : HtmlObjectRenderer<TBlock>
