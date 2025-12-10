@@ -1,4 +1,4 @@
-:root{
+:root {
   --bg-color: white;
   --bg-color-nav: #24273a;
   --link-color: #7dc4e4;
@@ -40,39 +40,39 @@ nav ul {
   line-height: 0px;
 }
 
-.snippet-before code{
+.snippet-before code {
   background-color: var(--code-surround-bg-color);
 }
 
-.snippet-before > .hljs{
+.snippet-before>.hljs {
   color: var(--text-color-weak);
 }
 
-.snippet-before span{
+.snippet-before span {
   color: var(--text-color-weak);
 }
 
-pre.snippet-before code{
+pre.snippet-before code {
   padding: 0 0 0 1rem;
 }
 
-pre.snippet-after code{
+pre.snippet-after code {
   padding: 0 0 1rem 1rem;
 }
 
-pre.snippet-main code{
+pre.snippet-main code {
   padding: 0 0 0 1rem;
 }
 
-.snippet-after code{
+.snippet-after code {
   background-color: var(--code-surround-bg-color);
 }
 
-.snippet-after > .hljs{
+.snippet-after>.hljs {
   color: var(--text-color-weak);
 }
 
-.snippet-after span{
+.snippet-after span {
   color: var(--text-color-weak);
 }
 
@@ -83,14 +83,14 @@ pre.snippet-main code{
 
 .aside {
   position: absolute;
-  right: -50%;
+  right: -40%;
   width: 288px;
   border-top: solid 1px var(--line-color);
   font-size: 14px;
   font: normal 14px/20px "Source Code Pro", monospace;
 }
 
-.aside img{
+.aside img {
   float: left;
   width: max-content;
   padding-right: 10px;
@@ -105,15 +105,15 @@ pre {
   font-size: 14px;
 }
 
-.source{
+.source {
   position: absolute;
-  right: -40%;
+  right: -32%;
   width: 220px;
   padding: 0px -50px 0 20px;
   font: normal 14px/20px "Source Code Pro", monospace;
 }
 
-.source-btm{
+.source-btm {
   display: none;
   text-align: right;
   font: normal 14px/20px "Source Code Pro", monospace;
@@ -128,15 +128,15 @@ code {
 }
 
 .hljs {
-    box-shadow: 0px 0px;
+  box-shadow: 0px 0px;
 }
 
 .source em {
   color: var(--text-color);
 }
 
-.source-btm em{
-    color: var(--text-color);
+.source-btm em {
+  color: var(--text-color);
 }
 
 .source::before {
@@ -165,7 +165,9 @@ td {
   text-align: left;
 }
 
-table, th, td {
+table,
+th,
+td {
   border-bottom: 1px solid var(--line-color);
 }
 
@@ -174,12 +176,12 @@ a {
 }
 
 article h2 a:hover {
-  color: var(--link-color-hover);
+  color: var(--text-color);
 }
 
 
 article a {
-  color: var(--link-color);
+  color: var(--title-color);
 }
 
 article a:hover {
@@ -263,15 +265,15 @@ article {
   width: max;
 }
 
-article img{
+article img {
   max-width: 100%;
 }
 
-article.chapter{
+article.chapter {
   width: 50rem;
 }
 
-article.chapter p{
+article.chapter p {
   color: var(--text-color);
   font-weight: 500;
 }
@@ -314,7 +316,7 @@ article.content h2 {
 }
 
 article.content h2:hover {
-  color: var(--link-color-hover);
+  color: var(--text-color);
 }
 
 article.content ul {
@@ -336,11 +338,11 @@ article.content li a {
 }
 
 article.content li a:hover {
-  color: var(--link-color-hover);
+  color: var(--text-color);
 }
 
 article.content li:hover {
-  color: var(--link-color-hover);
+  color: var(--text-color);
 }
 
 footer {
@@ -373,7 +375,7 @@ article.content footer {
   width: 95%;
 }
 
-article footer a{
+article footer a {
   color: var(--line-color)
 }
 
@@ -421,12 +423,12 @@ article.chapter .hint p {
   article {
     width: inherit;
   }
-  
-  article.chapter{
+
+  article.chapter {
     width: inherit;
   }
-  
-  .aside{
+
+  .aside {
     position: inherit;
     right: inherit;
     width: inherit;
@@ -434,15 +436,17 @@ article.chapter .hint p {
     overflow: hidden;
     padding-bottom: 10px;
   }
-  .aside img{
+
+  .aside img {
     display: block;
     float: left;
   }
-  
-  .source{
+
+  .source {
     display: none;
   }
-  .source-btm{
+
+  .source-btm {
     display: block;
   }
 }
