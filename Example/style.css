@@ -1,6 +1,21 @@
+:root{
+  --bg-color: white;
+  --bg-color-nav: #24273a;
+  --link-color: #7dc4e4;
+  --link-color-hover: #a6da95;
+  --link-nave-color-hover: #f5bde6;
+  --text-color: #24273a;
+  --text-color-weak: #8087a2;
+  --title-color: #f0c6c6;
+  --line-color: #939ab7;
+  --heading-color: #6e738d;
+  --code-bg-color: #f4dbd6;
+  --code-surround-bg-color: #363a4f;
+}
+
 nav {
-  background-color: #24273a;
-  color: #f0c6c6;
+  background-color: var(--bg-color-nav);
+  color: var(--title-color);
   font-family: "Bitcount Prop Single";
   font-weight: 300;
   font-size: 20px;
@@ -17,8 +32,8 @@ nav ul {
   padding-left: 0;
   margin: 6px 0 3px 0;
   padding: 6px 0 4px 0;
-  border-top: solid 1px #f5a97f;
-  border-bottom: solid 1px #f5a97f;
+  border-top: solid 1px var(--line-color);
+  border-bottom: solid 1px var(--line-color);
 }
 
 .snippet {
@@ -26,16 +41,15 @@ nav ul {
 }
 
 .snippet-before code{
-  background-color: #363a4f;
+  background-color: var(--code-surround-bg-color);
 }
 
 .snippet-before > .hljs{
-  background-color: #red;
-  color: #cad3f5;
+  color: var(--text-color-weak);
 }
 
 .snippet-before span{
-  color: #cad3f5;
+  color: var(--text-color-weak);
 }
 
 pre.snippet-before code{
@@ -51,28 +65,27 @@ pre.snippet-main code{
 }
 
 .snippet-after code{
-  background-color: #363a4f;
+  background-color: var(--code-surround-bg-color);
 }
 
 .snippet-after > .hljs{
-  background-color: #red;
-  color: #cad3f5;
+  color: var(--text-color-weak);
 }
 
 .snippet-after span{
-  color: #cad3f5;
+  color: var(--text-color-weak);
 }
 
 .snippet-main {
-  border-right: 2px solid #f0c6c6;
-  border-left: 2px solid #f0c6c6;
+  border-right: 2px solid var(--bg-color);
+  border-left: 2px solid var(--bg-color);
 }
 
 .aside {
   position: absolute;
   right: -50%;
   width: 288px;
-  border-top: solid 1px #939ab7;
+  border-top: solid 1px var(--line-color);
   font-size: 14px;
   font: normal 14px/20px "Source Code Pro", monospace;
 }
@@ -107,11 +120,11 @@ pre {
 }
 
 code {
-  background:#f4dbd6;
-  color: #24273a;
+  color: var(--text-color);
   font: normal 16px/22px "Courier New", Monospace;
-  padding: 2px;
-  box-shadow: 2px 2px #f5bde6;
+  margin-right: 2px;
+  padding: 3px;
+  box-shadow: 2px 2px var(--text-color-weak);
 }
 
 .hljs {
@@ -119,11 +132,11 @@ code {
 }
 
 .source em {
-  color: #312629;
+  color: var(--text-color);
 }
 
 .source-btm em{
-    color: #312629;
+    color: var(--text-color);
 }
 
 .source::before {
@@ -141,14 +154,6 @@ table {
   text-align: left;
 }
 
-th {
-  color: #8087a2;
-}
-
-tr {
-  color: #6e738d;
-}
-
 table thead tr th {
   padding: 2px 30px 4px 2px;
 }
@@ -161,36 +166,32 @@ td {
 }
 
 table, th, td {
-  border-bottom: 1px solid #8a8969;
+  border-bottom: 1px solid var(--line-color);
 }
 
 a {
   text-decoration: none;
 }
 
-article h2 a {
-  color: #494d64;
-}
-
 article h2 a:hover {
-  color: #f4dbd6;
+  color: var(--link-color-hover);
 }
 
 
 article a {
-  color: #f4dbd6;
+  color: var(--link-color);
 }
 
 article a:hover {
-  color: #24273a;
+  color: var(--link-color-hover);
 }
 
 nav a {
-  color: #f0c6c6;
+  color: var(--title-color);
 }
 
 nav a:hover {
-  color: #c6a0f6;
+  color: var(--link-nave-color-hover);
 }
 
 nav li small {
@@ -222,8 +223,8 @@ nav .prev-next {
 }
 
 body {
-  background-color: #b7bdf8;
-  /*! margin: 0; */
+  background-color: var(--bg-color);
+  margin: 0;
 }
 
 .page {
@@ -234,7 +235,7 @@ body {
   font-weight: 200;
   font-size: 20px;
   line-height: 24px;
-  color: #8087a2;
+  color: var(--text-color-weak);
 }
 
 h1 {
@@ -267,17 +268,17 @@ article img{
 }
 
 article.chapter{
-  width: 40rem;
+  width: 50rem;
 }
 
 article.chapter p{
-  color: #24273a;
+  color: var(--text-color);
   font-weight: 500;
 }
 
 article h1.title {
-  font-family: "Bitcount Prop Single";
-  color: #f4dbd6;
+  font-family: "Georgia";
+  color: var(--title-color);
   text-transform: uppercase;
   padding: 5rem 0 2rem 0;
   font-weight: 400;
@@ -313,7 +314,7 @@ article.content h2 {
 }
 
 article.content h2:hover {
-  color: #f4dbd6;
+  color: var(--link-color-hover);
 }
 
 article.content ul {
@@ -323,7 +324,7 @@ article.content ul {
 
 article.content li {
   list-style-type: none;
-  color: #312629;
+  color: var(--text-color-weak);
   font-weight: 300;
   font-size: 24px;
   padding: 0.5rem 0 0 24px;
@@ -331,25 +332,25 @@ article.content li {
 }
 
 article.content li a {
-  color: #494d64;
+  color: var(--text-color-weak);
 }
 
 article.content li a:hover {
-  color: #f4dbd6;
+  color: var(--link-color-hover);
 }
 
 article.content li:hover {
-  color: #f4dbd6;
+  color: var(--link-color-hover);
 }
 
 footer {
   position: relative;
-  border-top: solid 1px #939ab7;
+  border-top: solid 1px var(--line-color);
   text-align: center;
   margin: 3rem 0 0 1rem;
   padding-top: 1rem;
   font: 300 20px/30px "Bitcount Prop Single";
-  #cursor: pointer;
+  cursor: pointer;
 }
 
 footer .next {
@@ -359,7 +360,7 @@ footer .next {
   padding-left: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #b7bdf8;
+  background: var(--bg-color);
 }
 
 footer a {
@@ -372,9 +373,13 @@ article.content footer {
   width: 95%;
 }
 
+article footer a{
+  color: var(--line-color)
+}
+
 article.chapter .hint p {
-  background-color: #24273a;
-  color: #f4dbd6;
+  background-color: var(--text-color);
+  color: var(--bg-color);
   padding: 2px 20px 2px 20px;
   font-size: 14px;
   font-style: italic;
@@ -425,7 +430,7 @@ article.chapter .hint p {
     position: inherit;
     right: inherit;
     width: inherit;
-    border-bottom: solid 1px #b4c788;
+    border-bottom: solid 1px var(--line-color);
     overflow: hidden;
     padding-bottom: 10px;
   }
