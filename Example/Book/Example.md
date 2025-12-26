@@ -4,13 +4,13 @@
 [This](https://github.com/Lexyna/GodotGuideGen) being the project in question
 :::
 
-This hsould be a part snippet:
+This should be a part snippet:
 
 :::code
 part_snippet:5:3:This is only small a part of the main file
 :::
 
-and this shiould be the full snippet
+and this should be the full snippet
 
 :::code
 full_snippet:5:3:This is only small a part of the main file

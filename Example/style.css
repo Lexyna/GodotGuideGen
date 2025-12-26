@@ -394,7 +394,7 @@ article.chapter .hint p {
   font-style: italic;
 }
 
-@media only screen and (max-width: 1370px) {
+@media only screen and (max-width: 1450px) {
   body {
     margin: 0 24px;
   }
